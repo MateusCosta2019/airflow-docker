@@ -15,7 +15,7 @@ Se você já possui o Docker instalado na sua máquina, a primeira coisa que voc
   
  Com o diretório criado, é hora de baixar a imagem docker. Para isso, você pode digitar:
 
-    `curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.5.1/docker-compose.yaml'`
+    `Invoke-WebRequest -Uri 'https://airflow.apache.org/docs/apache-airflow/2.5.1/docker-compose.yaml' -OutFile 'docker-compose.yaml'`
 Assim como descrito na documentação oficial do Airflow, o arquivo yaml contém várias definições de serviços:
 
 -   airflow-scheduler - O agendador monitora todas as tarefas e DAGs e aciona as instâncias de tarefas assim que suas dependências são concluídas.
@@ -30,9 +30,11 @@ Antes de inicializar o airflow precisamos criar mais algumas pastas:
 - ./logs- contém logs de execução de tarefas e agendador.
 - ./plugins- você pode colocar seus plugins personalizados aqui.
 
-para isso execute o seguinte comando no cmd na pasta do airflow criada anteriomente:
+para isso execute os seguintes comandos no cmd na pasta do airflow criada anteriomente:
 
-    mkdir ./dags ./logs ./plugins
+    mkdir ./dags 
+    mkdir ./logs 
+    mkdir ./plugins
 
 Após realizar as configurações do ambiente é hora de inicializar nosso banco de dados do Airflow e nosso container, para isso execute o comando:
 
@@ -42,11 +44,10 @@ esse comando basicamente executará o airflow db init e criara o usuário adm. d
 
     docker-compose up
 
-Vale ressaltar que por precisar iniciar diversos serviços o comando acima pode demorar um pouco mas você pode verificar se sua imagem está funcionando usando o comando:
+Vale ressaltar que por precisar iniciar diversos serviços o comando acima pode demorar um pouco mas você pode verificar se sua imagem está funcionando usando o comando (em uma nova guia do seu cmd):
 
     docker ps
 
-em uma nova guia do seu cmd.
 
 Após todo esse processo, você acessar o airflow através do endereço localhost:8080 realizar login e utilizar o serviços da plataforma.
 
